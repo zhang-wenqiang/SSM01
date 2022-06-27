@@ -20,6 +20,6 @@ public class TestController {
 
 
     public String test(){
-        return "123";
+        return "1234";
     }
 }

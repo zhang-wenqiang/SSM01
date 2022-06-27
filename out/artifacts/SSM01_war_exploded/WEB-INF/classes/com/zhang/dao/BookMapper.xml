@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhang.dao.BookMapper">
+    <!--添加一本书-->
+    <insert id="addBook" parameterType="com.zhang.entity.Book">
+        insert into book(bookID,bookName,bookCounts,detail)
+        values (#{bookID},#{bookName},#{bookCounts},#{detail});
+    </insert>
+    <!--删除一本书-->
+    <delete id="deleteBook" parameterType="int">
+        delete from book where bookID=#{id} ;
+    </delete>
+    <!--更新一本书-->
+    <update id="updateBook" parameterType="Book">
+        update book set bookName=#{bookName},
+                        bookCounts=#{bookCounts},
+                        detail=#{detail}
+                    where bookID=#{bookID};
+    </update>
+
+    <!--查询一本书-->
+    <select id="queryBook" parameterType="int" resultType="Book">
+        select * from book where bookID=#{id};
+    </select>
+
+    <!--查询全部图书-->
+    <select id="queryBooks" resultType="Book">
+        select * from book;
+    </select>
+
+    <!--查询全部图书,根据书名-->
+    <select id="queryBooksByBookName" resultType="Book" parameterType="string">
+        select * from book where bookName like "%"#{bookName}"%";
+    </select>
+
+</mapper>

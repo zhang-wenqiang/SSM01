@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--核心配置文件-->
+<configuration>
+<!--本来是要在这里配置数据源，但整合之后在spring中配置-->
+<!--各个标签的位置也有约定-->
+    <!--添加日志-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--给实体类起别名-->
+    <typeAliases>
+        <package name="com.zhang.entity"/>
+    </typeAliases>
+
+
+</configuration>

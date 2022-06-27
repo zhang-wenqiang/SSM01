@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--1.关联数据库文件-->
+    <context:property-placeholder location="classpath:database.properties"/>
+
+    <!--2.连接池  c3p0-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+        <!--连接池的其他属性-->
+        <!--最大最小连接数量-->
+        <property name="maxPoolSize" value="30"/>
+        <property name="minPoolSize" value="10"/>
+        <!--关闭连接后不自动提交（commit）-->
+        <property name="autoCommitOnClose" value="false"/>
+        <!--设置连接超时时间-->
+        <property name="checkoutTimeout" value="10000"/>
+        <!--设置连接失败可重试次数-->
+        <property name="acquireRetryAttempts" value="2"/>
+    </bean>
+    <!--dbcp连接池-->
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;useUnicode=true"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>-->
+
+    <!--3.sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--绑定mybatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <!--4.配置dao接口扫描包，动态实现dao接口可以注入到spring容器中，以便业务层直接获取接口调CRUD方法-->
+    <!--配置下面的东西，就表示不需要给dao层接口建立实现类就可以直接调dao层方法-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--注入sqlSessionFactory-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <!--要扫描的dao包,就可以不用在mybatis-config重配置mappers-->
+        <property name="basePackage" value="com.zhang.dao"/>
+    </bean>
+</beans>

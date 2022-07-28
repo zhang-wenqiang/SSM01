@@ -37,6 +37,22 @@ public class BookController {
         List<Book> books = bookService.queryBooks();
         model.addAttribute("list",books);
 
+
+        /*Base64是网络上最常见的用于传输8Bit字节代码的编码方式之一，
+        在发送电子邮件时，服务器认证的用户名和密码需要用Base64编码，
+        附件也需要用Base64编码。*/
+        /*Base64要求把每三个8Bit的字节转换为四个6Bit的字节（3*8 = 4*6 = 24），
+        然后把6Bit再添两位高位0，组成四个8Bit的字节，也就是说，转换后的字符串理论上将要比原来的长1/3。*/
+        //String a = "hello";
+        //new BASE64Encoder().encode(a.getBytes());
+
+
+
+        //获取配置文件中键值对
+        //Properties properties = new Properties();
+        //ResourceBundle bundle = ResourceBundle.getBundle("");
+
+
         return "allBook";
     }
 

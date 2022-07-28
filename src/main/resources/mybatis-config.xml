@@ -18,4 +18,8 @@
     </typeAliases>
 
 
+    <mappers>
+        <mapper resource="com/zhang/dao/Test.xml"/>
+    </mappers>
+
 </configuration>

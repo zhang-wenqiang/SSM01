@@ -12,7 +12,9 @@
 
     <!--2.将所有业务类注入到spring，可以通过配置，或者注解来实现(用@Service和@Autowired)-->
     <bean id="bookServiceImpl" class="com.zhang.service.BookServiceImpl">
+        <property name="sqlSession" ref="sqlSession"/>
         <property name="bookMapper" ref="bookMapper"/>
+
     </bean>
 
     <!--3.声明事务配置，增删改自动提交-->

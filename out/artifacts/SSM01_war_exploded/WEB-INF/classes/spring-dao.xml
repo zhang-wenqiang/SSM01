@@ -43,6 +43,10 @@
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
     <!--4.配置dao接口扫描包，动态实现dao接口可以注入到spring容器中，以便业务层直接获取接口调CRUD方法-->
     <!--配置下面的东西，就表示不需要给dao层接口建立实现类就可以直接调dao层方法-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

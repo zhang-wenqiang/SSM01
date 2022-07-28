@@ -11,8 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.misc.BASE64Encoder;
 
 import java.util.List;
+import java.util.Properties;
+import java.util.ResourceBundle;
+import java.util.zip.GZIPOutputStream;
 
 /*
  *   时间：2021/12/9
@@ -21,7 +25,6 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/Book")
-
 public class BookController {
 
     @Autowired

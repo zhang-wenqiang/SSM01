@@ -3,6 +3,7 @@ package com.zhang.controller;
 import com.alibaba.fastjson.JSON;
 import com.zhang.entity.Book;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /*
@@ -57,7 +63,18 @@ public class TestController {
         Date time7 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-05");
 
 
+    }
 
+
+    public static void test1(){
+        Stream<String> aaa = Stream.of("1","2","");
+        aaa.filter(new Predicate<String>() {
+            @Override
+            public boolean test(String s) {
+
+                return StringUtils.isEmpty(s);
+            }
+        }).collect(Collectors.toList());
 
 
 

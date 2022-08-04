@@ -11,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -33,7 +35,7 @@ public class BookController {
 
     //查询全部书籍，然后页面显示
     @RequestMapping("/allBook")
-    public String listBooks(Model model){
+    public String listBooks(Model model) throws IOException {
         List<Book> books = bookService.queryBooks();
         model.addAttribute("list",books);
 
@@ -43,9 +45,9 @@ public class BookController {
         附件也需要用Base64编码。*/
         /*Base64要求把每三个8Bit的字节转换为四个6Bit的字节（3*8 = 4*6 = 24），
         然后把6Bit再添两位高位0，组成四个8Bit的字节，也就是说，转换后的字符串理论上将要比原来的长1/3。*/
-        //String a = "hello";
-        //new BASE64Encoder().encode(a.getBytes());
-
+        /*String a = "hello";
+        String encode = new BASE64Encoder().encode(a.getBytes());
+        byte[] bytes = new BASE64Decoder().decodeBuffer(encode);*/
 
 
         //获取配置文件中键值对

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -63,7 +64,8 @@ public class BookServiceImpl implements BookService{
         //List<Book> objects = sqlSession.selectList("orNight.queryF");
         //return this.bookMapper.queryBooks();
         List<Map> objects = sqlSession.selectList("");
-
+        Map<String,String> map = new HashMap<>();
+        List<Map<String,String>> o = sqlSession.selectOne("", map);
 
         return sqlSession.selectList("orNight.queryF");
     }

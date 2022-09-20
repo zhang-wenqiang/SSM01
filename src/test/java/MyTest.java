@@ -1,13 +1,19 @@
 import com.zhang.entity.Book;
 import com.zhang.service.BookService;
 import lombok.SneakyThrows;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Invocation;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.StringUtils;
+import sun.rmi.runtime.Log;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -98,8 +104,86 @@ public class MyTest {
         System.out.println("泛型：下界通配符super");
     }
 
+    @Test
+    public void test7(){
+        Set<String> set = new LinkedHashSet<>();
 
 
+        List<String> list  = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+
+
+        int[]  a = {1,23,3};
+        Map<Integer,Integer> map = new HashMap<>();
+
+        List<List<Integer>> list1 = new ArrayList();
+
+
+        for (int i=0;i<10;i++){
+            for (int j=0;j<10;j++){
+                if (i==0){
+
+                }else if (j==1){
+                    for (int t =0;t<10;t++){
+
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+    }
+
+    @Test
+    public void test8(){
+        List<Integer> list = new ArrayList<>();
+
+        list.add(1);
+        list.add(-1);
+        list.add(0);
+        list.add(5);
+        Collections.sort(list);
+
+        for (Integer integer : list) {
+            System.out.println(integer);
+        }
+
+
+    }
+
+    @Test
+    public void test9(){
+        String a = "123";
+        String b = "666781";
+
+        System.out.println((int) ((long) -b.compareTo(a)%Integer.MAX_VALUE));
+
+        int c = 3;
+        int d = 1;
+        int e = (int)((long)c%d);
+
+        System.out.println((int)((long) -c%Integer.MAX_VALUE));
+
+
+    }
+
+
+    @Test
+    public void test10(int[][] intervals){
+
+    }
+    
 }
 //继承和实现要分清，要不然接口就失去了它存在的意义
 interface TTT{
@@ -159,10 +243,44 @@ class T2<T> implements Serializable {
     public void test(List<?> list,Map<?,?> map){
         System.out.println(list.get(1));
 
+
+    }
+}
+
+//枚举类
+enum EnumTest{
+    a("a"),b("");
+
+
+    private String name;
+
+    private EnumTest(String string){
+        this.name = string;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 
 
+class InterceptTest implements Interceptor{
+
+    @Override
+    public Object intercept(Invocation invocation) throws Throwable {
+        return null;
+    }
+
+    @Override
+    public Object plugin(Object target) {
+        return null;
+    }
+
+    @Override
+    public void setProperties(Properties properties) {
+
+    }
+}
 
 
 

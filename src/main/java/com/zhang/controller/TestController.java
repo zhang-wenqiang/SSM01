@@ -40,7 +40,7 @@ public class TestController {
         Date parse2 = new SimpleDateFormat("yyyy-MM-dd").parse(format);
         Date parse3 = new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-05");
 
-        System.out.println(date.compareTo(parse2));
+        System.out.println(date.compareTo(parse2));//为什么date比format大，因为format默认为00:00:00
 
         Date parse = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(format+" 00:00:00");
         System.out.println(parse);
